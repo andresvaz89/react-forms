@@ -8,6 +8,13 @@ import AddMovie from './addMovie';
 function MovieList() {
   const [movies, setMovies] = useState(moviesDataJSON);
   const [showForm, setShowForm] = useState(false);
+  const addNewMovie = (newMovie) => {
+    // Create a new array
+    const updatedMovies = [...movies, newMovie];
+
+    setMovies(updatedMovies);
+  };
+
   return (
     <div>
       {movies.map((movie) => {
@@ -16,7 +23,7 @@ function MovieList() {
       <button onClick={() => setShowForm(!showForm)}>
         {showForm ? 'Hide Form' : 'Display Add Movie form'}
       </button>
-      {showForm && <AddMovie />}
+      {showForm && <AddMovie addNewMovie={addNewMovie} />}
     </div>
   );
 }
